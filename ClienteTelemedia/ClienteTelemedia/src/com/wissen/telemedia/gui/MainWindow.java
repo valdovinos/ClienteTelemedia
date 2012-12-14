@@ -45,7 +45,7 @@ public class MainWindow extends JFrame implements UIViewListener {
 	private Timer idleTimer, reportTimer;
 
 	private Session session;
-	int i=0;
+
 	/**
 	 * Main Window Constructor
 	 * 

@@ -104,9 +104,9 @@ public class LoginView extends UIView {
 		c.gridy++;
 		
 		add(newUserButton, c);
-		
+		newUserButton.setVisible(false);
 		newUserButton.addActionListener(new ActionListener() {
-
+		
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				((MainWindow) listener).changeViewTo(new SignupView(listener));
