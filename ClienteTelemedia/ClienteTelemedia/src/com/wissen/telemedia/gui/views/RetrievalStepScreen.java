@@ -1,5 +1,6 @@
 package com.wissen.telemedia.gui.views;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -87,7 +88,8 @@ public abstract class RetrievalStepScreen extends UIView {
 		startButton.setPreferredSize(new Dimension(180, 40));
 		
 		centerContainer.setPreferredSize(new Dimension(700, 360));
-		
+	//	Color color=new Color(255,255,255);
+	//	centerContainer.setBackground(color);
 		try {
 			imageSet = new ImageSet(getCorrectInstructiveImage(), getIncorrectInstructiveImage());
 			centerContainer.add(imageSet);
