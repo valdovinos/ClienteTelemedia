@@ -1,13 +1,11 @@
 package com.wissen.telemedia.gui.views;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,7 +21,7 @@ abstract public class UIView extends JPanel {
 	private Image imagen;
 	protected JLabel heading;
 	// // imagen en el jlabel Heading
-	ImageIcon icon = new ImageIcon("assets/banner.png");
+	
 	public UIView(UIViewListener listener) {
 		super();
 
@@ -85,7 +83,6 @@ abstract public class UIView extends JPanel {
 		// color rojo oscuro
 		Color color = new Color(111, 1, 0);
 		// se agrega la imagen al label
-		//heading.setIcon(icon);
 		heading.setText(text);
 		heading.setForeground(color);
 		c.anchor = GridBagConstraints.CENTER;

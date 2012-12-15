@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -34,8 +36,10 @@ public abstract class RetrievalStepScreen extends UIView {
 	protected JLabel stepIndicator, instructions, next;
 	
 	protected int state = 0;
-	
+
+	Color color = new Color(255, 255, 255);
 	protected JPanel imageSet;
+	ImageIcon icon = new ImageIcon("assets/banner.png");
 	
 	static class ImageSet extends JPanel {
 		public ImageSet(String correct, String incorrect) {
@@ -50,6 +54,11 @@ public abstract class RetrievalStepScreen extends UIView {
 			add(labelFromImage("assets/incorrect_sign.png"), c);
 			c.gridx++;
 			add(labelFromImage(incorrect), c);
+			//cambia el color del panel contenedor de las imagenes
+			Color color = new Color(255, 255, 255);
+			this.setBackground(color);
+			
+						
 		}
 		
 		public JLabel labelFromImage(String path) {
@@ -62,6 +71,7 @@ public abstract class RetrievalStepScreen extends UIView {
 			return new JLabel(new ImageIcon(i));
 		}
 	}
+
 
 	public RetrievalStepScreen(UIViewListener listener) {
 		super(listener);
@@ -77,19 +87,21 @@ public abstract class RetrievalStepScreen extends UIView {
 		Font newLabelFont = stepIndicator.getFont().deriveFont(
 				heading.getFont().getSize() * 0.75f);
 		stepIndicator.setFont(newLabelFont);
-
+	
 		instructions = new ParagraphLabel(getInstructionText(),
 				SwingConstants.CENTER);
-
+		
+		
 		startButton = new JButton("Iniciar medición");
 
 		centerContainer = new JPanel(new GridBagLayout());
 
 		startButton.setPreferredSize(new Dimension(180, 40));
-		
+		//contenedor central de imagenes de medicion
 		centerContainer.setPreferredSize(new Dimension(700, 360));
-	//	Color color=new Color(255,255,255);
-	//	centerContainer.setBackground(color);
+		Color color = new Color(255, 255, 255);
+		centerContainer.setBackground(color);
+	
 		try {
 			imageSet = new ImageSet(getCorrectInstructiveImage(), getIncorrectInstructiveImage());
 			centerContainer.add(imageSet);
@@ -99,6 +111,7 @@ public abstract class RetrievalStepScreen extends UIView {
 
 		instructions.setVerticalAlignment(SwingConstants.TOP);
 		instructions.setPreferredSize(new Dimension(700, 40));
+		
 		c.anchor = GridBagConstraints.CENTER;
 
 		c.gridy++;
@@ -147,6 +160,20 @@ public abstract class RetrievalStepScreen extends UIView {
 	}
 
 	public void setStepIndex(int index, int total) {
+		//agrega la imagen del banner y cambia las fuentes
+		stepIndicator.setIcon(icon);
+		stepIndicator.setVerticalTextPosition(JLabel.CENTER);
+		stepIndicator.setHorizontalTextPosition(JLabel.CENTER);
+		/**color del label instructions
+		 * cambiar paraponer un fonde blanco detras de las letras 
+		 */
+		 
+		//instructions.setIcon(icon);
+		stepIndicator.setForeground(color);
+		Font newLabelFont = new Font(heading.getFont().getName(), Font.BOLD,
+				(int) (heading.getFont().getSize() * 1.20));
+		stepIndicator.setFont(newLabelFont);
+		///////////////////////////////////
 		stepIndicator.setText(String.format("Paso %d de %d", index, total));
 	}
 
