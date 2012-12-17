@@ -20,14 +20,15 @@ abstract public class UIView extends JPanel {
 	protected GridBagConstraints c = new GridBagConstraints();
 	private Image imagen;
 	protected JLabel heading;
+
 	// // imagen en el jlabel Heading
-	
+
 	public UIView(UIViewListener listener) {
 		super();
 
-		this.listener = listener;		
+		this.listener = listener;
 		this.setBackground(new java.awt.Color(255, 255, 255));
-		this.setImagen("assets/2.png");
+		this.setImagen("assets/background.png");
 		GridBagLayout layout = new GridBagLayout();
 		setLayout(layout);
 
@@ -40,56 +41,76 @@ abstract public class UIView extends JPanel {
 
 		init();
 	}
-/**funcion de prueba para imagen de fondo 
- * */
+
+	/**
+	 * funcion de prueba para imagen de fondo
+	 * */
 	public void setImagen(String nombreImagen) {
-        if (nombreImagen != null) {
-            imagen = new ImageIcon(nombreImagen).getImage();
-        } else {
-            imagen = null;
-        }
+		if (nombreImagen != null) {
+			imagen = new ImageIcon(nombreImagen).getImage();
+		} else {
+			imagen = null;
+		}
 
-        repaint();
-    }
+		repaint();
+	}
 
-    public void setImagen(Image nuevaImagen) {
-        imagen = nuevaImagen;
+	public void setImagen(Image nuevaImagen) {
+		imagen = nuevaImagen;
 
-        repaint();
-    }
+		repaint();
+	}
 
-    @Override
-    public void paint(Graphics g) {
-        if (imagen != null) {
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+	@Override
+	public void paint(Graphics g) {
+		if (imagen != null) {
+			g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
 
-            setOpaque(false);
-        } else {
-            setOpaque(true);
-        }
+			setOpaque(false);
+		} else {
+			setOpaque(true);
+		}
 
-        super.paint(g);
-    }
-////////////////////////////////////////////////////////////
+		super.paint(g);
+	}
+
+	// //////////////////////////////////////////////////////////
 	protected void addHeading(String text) {
-		heading = new JLabel();
-		Font newLabelFont = new Font(heading.getFont().getName(), Font.BOLD,
-				(int) (heading.getFont().getSize() * 1.25));
+		
+		if (text == "Reporte") {
+			Color blanco = new Color(255, 255, 255);
+			ImageIcon icon = new ImageIcon("assets/bannerReport.png");
+			JLabel title = new JLabel();
+			title.setIcon(icon);
+			title.setText("reporte");
+			Font font= new Font("newFon", Font.BOLD,
+					(int) (20));
+			title.setForeground(blanco);
+			title.setFont(font);
+			title.setVerticalTextPosition(JLabel.CENTER);
+			title.setHorizontalTextPosition(JLabel.CENTER);
+			c.anchor = GridBagConstraints.CENTER;
+			add(title, c);
+		} else {
+			heading = new JLabel();
+			Font newLabelFont = new Font(heading.getFont().getName(),
+					Font.BOLD, (int) (heading.getFont().getSize() * 1.50));
 
-		//heading.setPreferredSize(new Dimension(400, 40));
-		heading.setFont(newLabelFont);
+			// heading.setPreferredSize(new Dimension(400, 40));
+			heading.setFont(newLabelFont);
 
-		heading.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
-		// color rojo oscuro
-		Color color = new Color(111, 1, 0);
-		// se agrega la imagen al label
-		heading.setText(text);
-		heading.setForeground(color);
-		c.anchor = GridBagConstraints.CENTER;
-		// forza al texto en el centro
-		heading.setVerticalTextPosition(JLabel.CENTER);
-		heading.setHorizontalTextPosition(JLabel.CENTER);
-		add(heading, c);
+			heading.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+			// color morado oscuro
+			Color color = new Color(100, 37, 83);
+			// se agrega la imagen al label
+			heading.setText(text);
+			heading.setForeground(color);
+			c.anchor = GridBagConstraints.CENTER;
+			// forza al texto en el centro
+			heading.setVerticalTextPosition(JLabel.CENTER);
+			heading.setHorizontalTextPosition(JLabel.CENTER);
+			add(heading, c);
+		}
 	}
 
 	public void nextState() {

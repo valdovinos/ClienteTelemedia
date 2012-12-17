@@ -9,12 +9,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import com.wissen.telemedia.gui.ParagraphLabel;
 import com.wissen.telemedia.gui.UIViewListener;
 
 public class WelcomeScreen extends UIView {
-
+	JPanel panel = new JPanel();
 	public WelcomeScreen(UIViewListener listener) {
 		super(listener);
 		
@@ -22,7 +23,7 @@ public class WelcomeScreen extends UIView {
 
 	@Override
 	protected void init() {
-		
+	
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 4;

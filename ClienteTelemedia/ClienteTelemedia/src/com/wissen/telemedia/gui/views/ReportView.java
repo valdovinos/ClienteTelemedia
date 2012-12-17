@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,14 +18,16 @@ import javax.swing.border.MatteBorder;
 import com.wissen.telemedia.gui.UIViewListener;
 
 public class ReportView extends UIView {
-
+	static Color blanco = new Color(255, 255, 255);
 	static class Row extends JPanel {
 		public Row(String key, Double val) {
 			this(key, Double.toString(val));
+			
 		}
 
 		public Row(String key, String val) {
-			setBorder(new MatteBorder(0, 1, 1, 1, new Color(180, 180, 180)));
+			
+			setBorder(new MatteBorder(0, 1, 1, 1, new Color(185, 190, 16)));
 
 			((FlowLayout) getLayout()).setHgap(0);
 
@@ -34,25 +37,25 @@ public class ReportView extends UIView {
 			keyL.setPreferredSize(new Dimension(240, 32));
 			valL.setPreferredSize(new Dimension(320, 32));
 			
-			
+			setBackground(blanco);
 			keyL.setFont(keyL.getFont().deriveFont(Font.BOLD));
 			
-			keyL.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0)); 
+			keyL.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0)); 
 
 			add(keyL);
 			add(valL);
+			
 		}
 	}
 
 	public ReportView(UIViewListener listener) {
-		super(listener);
+		super(listener);		
 	}
 
 	@Override
 	protected void init() {
-
+		
 		addHeading("Reporte");
-
 		JButton done = new JButton("Terminado");
 
 		done.addActionListener(new ActionListener() {
@@ -70,12 +73,15 @@ public class ReportView extends UIView {
 		
 		JPanel row = new Row("Nombre", listener.getSession().firstname);
 		
-		row.setBorder(new MatteBorder(1, 1, 1, 1, new Color(180, 180, 180)));
+		row.setBorder(new MatteBorder(1, 1, 1, 1, new Color(185, 190, 16)));
 
 		add(row, c);
 
-		c.gridy++;
-
+		c.gridy++;		
+	//cambiar el fondo 
+		
+		//row.setFont(font);
+	//
 		add(new Row("Apellido Paterno", listener.getSession().lastname1), c);
 		
 		c.gridy++;

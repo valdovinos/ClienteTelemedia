@@ -145,7 +145,10 @@ public abstract class RetrievalStepScreen extends UIView {
 		c.gridy++;
 		next = new ParagraphLabel();
 		next.setPreferredSize(new Dimension(380, 20));
-		next.setFont(stepIndicator.getFont());
+		//Color color = new Color;
+		Font font= new Font("newFon", Font.BOLD,
+				(int) (12));
+		next.setFont(font);
 		add(next, c);
 
 		startButton.addActionListener(new ActionListener() {
@@ -226,6 +229,7 @@ public abstract class RetrievalStepScreen extends UIView {
 	
 	public void setNextStepTitle(String title) {
 		nextStepTitle = title;
+		
 	}
 
 	protected final void finishedRetrieval() {
