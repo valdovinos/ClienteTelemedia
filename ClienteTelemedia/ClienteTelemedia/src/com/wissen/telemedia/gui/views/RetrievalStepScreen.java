@@ -1,5 +1,7 @@
 package com.wissen.telemedia.gui.views;
 
+import imagene.panel.JPanelConFondo;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -28,6 +30,7 @@ import com.wissen.telemedia.gui.UIViewListener;
 public abstract class RetrievalStepScreen extends UIView {
 	protected JButton startButton, continueButton;
 	protected JPanel centerContainer;
+	protected JPanelConFondo center;
 	protected JProgressBar progressBar;
 	protected JLabel progressIndicator;
 
@@ -93,13 +96,15 @@ public abstract class RetrievalStepScreen extends UIView {
 		
 		
 		startButton = new JButton("Iniciar medición");
-
+		//panel con imagen de fondo para las mediciones
+		center = new JPanelConFondo();
+		center.setPreferredSize(new Dimension(800, 400));
+		center.setImagen("assets/cuadro_blanco.png");
 		centerContainer = new JPanel(new GridBagLayout());
-
+		
 		startButton.setPreferredSize(new Dimension(180, 40));
 		//contenedor central de imagenes de medicion
-		centerContainer.setPreferredSize(new Dimension(700, 360));
-		Color color = new Color(255, 255, 255);
+		centerContainer.setPreferredSize(new Dimension(700, 360));		
 		centerContainer.setBackground(color);
 	
 		try {
@@ -125,9 +130,10 @@ public abstract class RetrievalStepScreen extends UIView {
 		c.gridx = 0;
 		c.gridy++;
 		c.gridwidth = 3;
-		add(centerContainer, c);
-
 		
+		//add(centerContainer, c);
+		center.add(centerContainer);
+		add(center, c);
 		c.gridy++;
 		c.gridwidth = 1;
 		c.gridheight = 1;
