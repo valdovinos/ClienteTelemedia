@@ -11,7 +11,7 @@ public class DAOUser {
 	public static String login(String username, String password) {
 		String result;
 		try {
-			URLConnection conn = DAOConnection.getConnection();
+			URLConnection conn = DAOConnection.getConnection();			
 			conn.setDoOutput(true);
 			OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());	
 //			String parameters = "Action=Login&Username=" + username + "&Password=" + password;
@@ -21,7 +21,7 @@ public class DAOUser {
 //			out.write(new String(encryptedParameters));
 			out.write("Action=Login&Username=" + username + "&Password=" + password);
 			out.close();
-			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"ISO-8859-15"));
 	        result = in.readLine();
 	        in.close();
 		} catch (Exception e) {
