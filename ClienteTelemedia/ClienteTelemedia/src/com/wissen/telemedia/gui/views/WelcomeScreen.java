@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.ParagraphLabel;
 import com.wissen.telemedia.gui.UIViewListener;
 import com.wissen.telemedia.gui.views.RetrievalStepScreen.ImageSet;
@@ -66,11 +67,26 @@ public class WelcomeScreen extends UIView {
 		//add(content,c);
 		JButton continueB = new JButton("Continuar");
 		JButton cancelB = new JButton("Cancelar");
+		
+		/**codigo agregado para ir a la vista de video conferencia*/
+		
+		JButton conferencia = new JButton("Videoconferencia");
+		conferencia.setPreferredSize(new Dimension(200, 40));
+		conferencia.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				goConferencia();
+				
+			}
+			
+		});		
+		/**************************************************************/
 		continueB.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//((UIView) WelcomeScreen.this).listener.nextScreen();
 				((UIView) WelcomeScreen.this).listener.nextScreen();
 			}
 
@@ -109,6 +125,8 @@ public class WelcomeScreen extends UIView {
 		content.add(cancelB, c);
 		c.gridx=1;
 		content.add(continueB, c);
+		c.gridy++;
+		content.add(conferencia);
 		c.gridx=0;
 		c.gridy=2;
 		add(content,c);
@@ -126,6 +144,14 @@ public class WelcomeScreen extends UIView {
 
 		//add(continueB, c);
 	}
-
-	
+/**
+ * thread para cambiar la vista a la video conferencia*/
+	protected synchronized void goConferencia() {
+		
+		new Thread() {
+			public void run() {				
+					((MainWindow) listener).changeViewTo(new videoconferencingView(listener));				
+			}
+		}.start();
+	}
 }
