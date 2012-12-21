@@ -15,7 +15,10 @@ public class DAOConnection {
 	private static String HOST = "localhost", PORT = "8081";
 	//private static String SERVLET_LOCATION = "http://" + HOST + ":" + PORT + "/openmrs-standalone/Telemedia/OmrsServlet";
 	//cambio para correr en un servidor php
-	private static String SERVLET_LOCATION = "http://localhost/Telemedia/bridge.php";
+	private static String SERVLET_LOCATION = "http://www.e-saludjalisco.org/telemedicina/includes/EXT/bridge.php";
+	
+	//private static String SERVLET_LOCATION = "http://192.168.1.187/telemedicina/includes/EXT/bridge.php";
+//	private static String SERVLET_LOCATION = "http://localhost/Telemedia/bridge.php";
 	static {
 		readConfigFile();
 		//SERVLET_LOCATION = "http://" + HOST + ":" + PORT + "/openmrs-standalone/Telemedia/OmrsServlet";
