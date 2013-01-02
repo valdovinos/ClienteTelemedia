@@ -1,5 +1,5 @@
 package com.wissen.telemedia.gui;
-
+//
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GraphicsDevice;
