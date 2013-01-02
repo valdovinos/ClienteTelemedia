@@ -84,12 +84,28 @@ public class SensorsReader {
 	public static double readTemperature() { 
 		double temperature = -1;
 		try {
-			Process p = Runtime.getRuntime().exec("./tsaak OOXOL");
-			InputStreamReader ir = new InputStreamReader(p.getInputStream());
-			BufferedReader br = new BufferedReader(ir);
-			String line = br.readLine(); // BEGIN:SAAL
-			line = br.readLine();
+			Process p = Runtime.getRuntime().exec("./tsaakIWM OOXOL");
+            p.waitFor();		
 			
+			InputStreamReader ir = new InputStreamReader(p.getInputStream());
+			
+			BufferedReader br = new BufferedReader(ir);
+			//sleep			
+									
+		/*	String line=null;
+			try{
+			while ((line = br.readLine()) != null) {
+	                System.out.println(line);  
+	            }
+			}catch(NullPointerException e){				
+				System.out.println("error "+line);
+			}
+			*/
+			String line1 = br.readLine(); // BEGIN:SAAL
+			String line = br.readLine(); 
+			
+			//line = br.readLine();
+			System.out.println("temperatura "+line);
 			if(!line.equals("END:ERROR")) 
 				// RESULT1:0000 en dcimas de grados
 				temperature = Double.parseDouble(line.split(":")[1].trim()) / 10.0;

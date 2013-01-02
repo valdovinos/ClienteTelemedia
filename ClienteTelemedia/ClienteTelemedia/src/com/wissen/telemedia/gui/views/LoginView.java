@@ -91,8 +91,7 @@ public class LoginView extends UIView {
 		c.fill = GridBagConstraints.NONE;
 		c.gridy++;
 
-		loginButton = new JButton("Entrar");
-		
+		loginButton = new JButton("Entrar");		
 		loginButton.setPreferredSize(new Dimension(200, 40));
 		
 		add(loginButton, c);
