@@ -39,11 +39,10 @@ public abstract class RetrievalStepScreen extends UIView {
 	protected JLabel stepIndicator, instructions, next;
 	
 	protected int state = 0;
-
+	
 	Color color = new Color(255, 255, 255);
 	protected JPanel imageSet;
-	ImageIcon icon = new ImageIcon("assets/banner.png");
-	
+	ImageIcon icon = new ImageIcon("assets/banner.png");	
 	static class ImageSet extends JPanel {
 		public ImageSet(String correct, String incorrect) {
 			super(new GridBagLayout());
@@ -81,7 +80,8 @@ public abstract class RetrievalStepScreen extends UIView {
 	}
 
 	protected void init() {
-		
+		Font font= new Font("newFon", Font.BOLD,
+				(int) (12));
 		progressIndicator = new ParagraphLabel();
 		stepIndicator = new ParagraphLabel("Paso X de Y");
 		
@@ -99,6 +99,7 @@ public abstract class RetrievalStepScreen extends UIView {
 		//panel con imagen de fondo para las mediciones
 		center = new JPanelConFondo();
 		center.setPreferredSize(new Dimension(800, 400));
+		center.setBackground(color);
 		center.setImagen("assets/cuadro_blanco.png");
 		centerContainer = new JPanel(new GridBagLayout());
 		
@@ -115,8 +116,10 @@ public abstract class RetrievalStepScreen extends UIView {
 		}
 
 		instructions.setVerticalAlignment(SwingConstants.TOP);
-		instructions.setPreferredSize(new Dimension(700, 40));
-		
+		instructions.setPreferredSize(new Dimension(700, 40));		
+		instructions.setFont(font);
+		instructions.setVerticalTextPosition(JLabel.CENTER);
+		instructions.setHorizontalTextPosition(JLabel.CENTER);
 		c.anchor = GridBagConstraints.CENTER;
 
 		c.gridy++;
@@ -152,8 +155,6 @@ public abstract class RetrievalStepScreen extends UIView {
 		next = new ParagraphLabel();
 		next.setPreferredSize(new Dimension(380, 20));
 		//Color color = new Color;
-		Font font= new Font("newFon", Font.BOLD,
-				(int) (12));
 		next.setFont(font);
 		add(next, c);
 
@@ -231,6 +232,7 @@ public abstract class RetrievalStepScreen extends UIView {
 		repaint();
 		listener.setStandby(true);
 		startRetrieval();
+		
 	}
 	
 	public void setNextStepTitle(String title) {
