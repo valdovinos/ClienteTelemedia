@@ -1,7 +1,7 @@
 ClienteTelemedia
 ================
 /**
-*@athor Hugo Valdovinos
+*@author Hugo Valdovinos
 */
 SoftwareCabinaIWM
 
