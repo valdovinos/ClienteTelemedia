@@ -79,7 +79,7 @@ public class MainWindow extends JFrame implements UIViewListener {
 		setResizable(false);
 
 		configureTimer();
-
+		////
 		reset();
 		
 	}
