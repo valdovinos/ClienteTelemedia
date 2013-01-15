@@ -49,7 +49,7 @@ public class MainWindow extends JFrame implements UIViewListener {
 	/**
 	 * Main Window Constructor
 	 * 
-	 * @todo Fullscreen
+	 * @todo Fullscreen debian
 	 */
 	public MainWindow() {
 		super();
