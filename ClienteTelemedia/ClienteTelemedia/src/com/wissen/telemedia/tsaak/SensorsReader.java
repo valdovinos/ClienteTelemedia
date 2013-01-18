@@ -1,15 +1,20 @@
+/**
+ * @author Hugo Valdovinos
+*/
 package com.wissen.telemedia.tsaak;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+/**
+ * @todo*/
 public class SensorsReader {
 
 	// Devuelve peso en kilogramos
 	public static double readWeight() {
 		double weight = -1;
 		try {
-			Process p = Runtime.getRuntime().exec("./tsaak SAAL");
+			Process p = Runtime.getRuntime().exec("tsaak SAAL");
+			p.waitFor();
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
 			String line = br.readLine(); // BEGIN:SAAL
@@ -29,10 +34,11 @@ public class SensorsReader {
 	}
 	
 	// Devuelve { Presion sistlica, presion diastlica }
-	public static double[] readPressure() { 
+	public static double[] readPressure() {
 		double[] pressure = {-1, -1};
 		try {
-			Process p = Runtime.getRuntime().exec("./tsaak KIL");
+			Process p = Runtime.getRuntime().exec("tsaak KIL");
+			p.waitFor();
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
 			String line = br.readLine(); // BEGIN:SAAL
@@ -61,7 +67,8 @@ public class SensorsReader {
 	public static double readHeight() { 
 		double height = -1;
 		try {
-			Process p = Runtime.getRuntime().exec("tsaakIWM NAAB");
+			Process p = Runtime.getRuntime().exec("tsaak NAAB");
+			p.waitFor();
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
 			String line = br.readLine(); // BEGIN:SAAL
@@ -84,7 +91,7 @@ public class SensorsReader {
 	public static double readTemperature() { 
 		double temperature = -1;
 		try {
-			Process p = Runtime.getRuntime().exec("./tsaak OOXOL");
+			Process p = Runtime.getRuntime().exec("tsaak OOXOL");
             p.waitFor();		
 			
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
@@ -113,7 +120,8 @@ public class SensorsReader {
 	public static double[] readOximeter() { 
 		double[] oximeter = {-1, -1};
 		try {
-			Process p = Runtime.getRuntime().exec("./tsaak IIK");
+			Process p = Runtime.getRuntime().exec("tsaak IIK");
+			p.waitFor();
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
 			String line = br.readLine(); // BEGIN:SAAL

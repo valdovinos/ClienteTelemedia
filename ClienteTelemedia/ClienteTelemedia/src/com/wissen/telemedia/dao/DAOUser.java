@@ -28,7 +28,6 @@ public class DAOUser {
 			System.out.println(e);
 			result = "Connection error";
 		}
-		System.out.println(result);
 		return result;
 	}
 	
@@ -45,6 +44,7 @@ public class DAOUser {
 			out.close();
 			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 	        result = in.readLine();
+	        System.out.println(result);
 	        in.close();
 		} catch (Exception e) {
 			result = "Connection error";
