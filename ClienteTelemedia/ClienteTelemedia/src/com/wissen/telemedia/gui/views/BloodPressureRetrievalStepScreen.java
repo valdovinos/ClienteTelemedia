@@ -2,7 +2,7 @@ package com.wissen.telemedia.gui.views;
 
 import com.wissen.telemedia.gui.UIViewListener;
 import com.wissen.telemedia.tsaak.SensorsReader;
-
+/**@brief valores para la medición de presión en la sangre*/
 public class BloodPressureRetrievalStepScreen extends RetrievalStepScreen {
 
 	public BloodPressureRetrievalStepScreen(UIViewListener listener) {
@@ -28,13 +28,13 @@ public class BloodPressureRetrievalStepScreen extends RetrievalStepScreen {
 	public String getIncorrectInstructiveImage() {
 		return "assets/bloodpressure_incorrect.png";
 	}
-
+	/**@brief obtiene y almacena losvalores */
 	synchronized protected void doRetrieval() {
 		double[] data = SensorsReader.readPressure();
 		
 		double systolicPressure  = data[0];
 		double diastolicPressure = data[1];
-		
+		/**guarda el valor obtenido en el ArrayList de la clase Session*/ 
 		listener.getSession().addMetric("systolic",  systolicPressure);
 		listener.getSession().addMetric("diastolic", diastolicPressure);
 	}

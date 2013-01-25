@@ -1,15 +1,34 @@
 /**
  * @author Hugo Valdovinos
-*/
+ */
 package com.wissen.telemedia.tsaak;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
 /**
- * @todo*/
+ * @class SensorsReader
+ * @brief interactua con la consola del sistema y esta a su vez con los
+ *        dispositivos de medición de signos vitales
+ */
+
 public class SensorsReader {
 
-	// Devuelve peso en kilogramos
+	/**
+	 * @brief acceso al sensor para medir el peso
+	 * @note Devuelve peso en gramos
+	 * @param p
+	 *            ejecuta un comando en consola
+	 * @param ir
+	 *            se almacena lo devuelto por la llamada a consola
+	 * @param line
+	 *            cadena para almacenar lo obtenido de la variable ir
+	 * @param weight
+	 *            variable almacena el valor devuelto por la variable br
+	 * @note trama obtenida del buffer donde esta almacenado el valor BEGIN:SAAL
+	 *       "primera linea" RESULT1:0000 "segunda linea" en hectogramos
+	 * @return peso en hectogramos
+	 */
 	public static double readWeight() {
 		double weight = -1;
 		try {
@@ -17,11 +36,13 @@ public class SensorsReader {
 			p.waitFor();
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
-			String line = br.readLine(); // BEGIN:SAAL
+			String line = br.readLine();
+			/** < valor devuelto BEGIN:SAAL */
 			line = br.readLine();
-			
-			if(!line.equals("END:ERROR")) 
-				// RESULT1:0000 en hectogramos
+			/** < valor devuelto RESULT1:0000 */
+
+			if (!line.equals("END:ERROR"))
+
 				weight = Double.parseDouble(line.split(":")[1].trim()) / 10.0;
 
 			br.close();
@@ -29,29 +50,45 @@ public class SensorsReader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return weight;
 	}
-	
-	// Devuelve { Presion sistlica, presion diastlica }
+
+	/**
+	 * @brief acceso al sensor para medir Presion sistlica, presion diastlica
+	 * @note Devuelve Presion sistlica, presion diastlica
+	 * @param p
+	 *            ejecuta un comando en consola
+	 * @param ir
+	 *            se almacena lo devuelto por la llamada a consola
+	 * @param line
+	 *            cadena para almacenar lo obtenido de la variable ir
+	 * @param weight
+	 *            variable almacena el valor devuelto por la variable br
+	 * @note trama obtenida del buffer donde esta almacenado el valor BEGIN:KIL
+	 *       "primera linea" RESULT1:0000 "segunda linea" en sistlica
+	 *       RESULT2:0000 "tercera linea" en diastlica
+	 * @return arreglo con los dos valores de la medición
+	 */
 	public static double[] readPressure() {
-		double[] pressure = {-1, -1};
+		double[] pressure = { -1, -1 };
 		try {
 			Process p = Runtime.getRuntime().exec("tsaak KIL");
 			p.waitFor();
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
-			String line = br.readLine(); // BEGIN:SAAL
+			String line = br.readLine();
+			/** < valor devuelto BEGIN:KIL */
 			line = br.readLine();
-			
-			if(!line.equals("END:ERROR")) {
-				// RESULT1:000 Presin sistlica
+			/** < valor devuelto RESULT1:0000 */
+
+			if (!line.equals("END:ERROR")) {
 				pressure[0] = Double.parseDouble(line.split(":")[1].trim()) / 10.0;
 				line = br.readLine();
-				// RESULT2:000 Presin sistlica
+				/** < RESULT2:0000 */
 				pressure[1] = Double.parseDouble(line.split(":")[1].trim()) / 10.0;
 			}
-			
+
 			br.close();
 			ir.close();
 		} catch (Exception e) {
@@ -59,23 +96,36 @@ public class SensorsReader {
 			pressure[1] = -1;
 			e.printStackTrace();
 		}
-		
+
 		return pressure;
 	}
-	
-	// Devuelve estatura en metros
-	public static double readHeight() { 
+
+	/**
+	 * @brief acceso al sensor para medir estatura
+	 * @note Devuelve estatura en metros
+	 * @param p
+	 *            ejecuta un comando en consola
+	 * @param ir
+	 *            se almacena lo devuelto por la llamada a consola
+	 * @param line
+	 *            cadena para almacenar lo obtenido de la variable ir
+	 * @param weight
+	 *            variable almacena el valor devuelto por la variable br
+	 * @note trama obtenida del buffer donde esta almacenado el valor BEGIN:NAAB
+	 *       "primera linea" RESULT1:0000 "segunda linea" en centimetros
+	 * @return estatura en metros
+	 */
+	public static double readHeight() {
 		double height = -1;
 		try {
 			Process p = Runtime.getRuntime().exec("tsaak NAAB");
 			p.waitFor();
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
-			String line = br.readLine(); // BEGIN:SAAL
+			String line = br.readLine();
 			line = br.readLine();
-			
-			if(!line.equals("END:ERROR")) 
-				// RESULT1:0000 en centmetros
+
+			if (!line.equals("END:ERROR"))
 				height = Double.parseDouble(line.split(":")[1].trim()) / 100.0;
 
 			br.close();
@@ -83,28 +133,39 @@ public class SensorsReader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return height;
 	}
-	
-	// Devuelve temperature en grados Celsius
-	public static double readTemperature() { 
+
+	/**
+	 * @brief acceso al sensor para medir temperatura
+	 * @note Devuelve temperatura en grados Celsius
+	 * @param p
+	 *            ejecuta un comando en consola
+	 * @param ir
+	 *            se almacena lo devuelto por la llamada a consola
+	 * @param line
+	 *            cadena para almacenar lo obtenido de la variable ir
+	 * @param weight
+	 *            variable almacena el valor devuelto por la variable br *
+	 * @note trama obtenida del buffer donde esta almacenado el valor BEGIN:OOXOL
+	 *       "primera linea" RESULT1:0000 "segunda linea" en decimas de grados
+	 * @return valor de la temperatura
+	 */
+	public static double readTemperature() {
 		double temperature = -1;
 		try {
 			Process p = Runtime.getRuntime().exec("tsaak OOXOL");
-            p.waitFor();		
-			
+			p.waitFor();
+
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
-			
+
 			BufferedReader br = new BufferedReader(ir);
-		
-			//String line1 = br.readLine(); // BEGIN:SAAL
-			String line = br.readLine(); 
-			
+
+			String line = br.readLine();
+
 			line = br.readLine();
-			System.out.println("temperatura "+line);
-			if(!line.equals("END:ERROR")) 
-				// RESULT1:0000 en dcimas de grados
+			if (!line.equals("END:ERROR"))
 				temperature = Double.parseDouble(line.split(":")[1].trim()) / 10.0;
 
 			br.close();
@@ -112,29 +173,43 @@ public class SensorsReader {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return temperature;
 	}
-	
-	// Devuelve { Porcentaje de oxigeno, latidos por minuto}
-	public static double[] readOximeter() { 
-		double[] oximeter = {-1, -1};
+
+	/**
+	 * @brief acceso al sensor para medir oxigenación en la sangre
+	 * @note Devuelve Porcentaje de oxigeno, latidos por minuto
+	 * @param p
+	 *            ejecuta un comando en consola
+	 * @param ir
+	 *            se almacena lo devuelto por la llamada a consola
+	 * @param line
+	 *            cadena para almacenar lo obtenido de la variable ir
+	 * @param weight
+	 *            variable almacena el valor devuelto por la variable br
+	 * @note trama obtenida del buffer donde esta almacenado el valor BEGIN:IIK
+	 *       "primera linea" RESULT1:0000 "segunda linea" Porcentaje de oxigeno
+	 *       RESULT2:0000 "tercera linea" Latidos por minuto
+	 * @return arreglo con los dos valores de la medición
+	 * 
+	 */
+	public static double[] readOximeter() {
+		double[] oximeter = { -1, -1 };
 		try {
 			Process p = Runtime.getRuntime().exec("tsaak IIK");
 			p.waitFor();
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
-			String line = br.readLine(); // BEGIN:SAAL
+			String line = br.readLine();
 			line = br.readLine();
-			
-			if(!line.equals("END:ERROR")) {
-				// RESULT1:000 Porcentaje de oxigeno
+
+			if (!line.equals("END:ERROR")) {
 				oximeter[0] = Double.parseDouble(line.split(":")[1].trim());
 				line = br.readLine();
-				// RESULT2:000 Latidos por minuto
 				oximeter[1] = Double.parseDouble(line.split(":")[1].trim());
 			}
-			
+
 			br.close();
 			ir.close();
 		} catch (Exception e) {
@@ -142,8 +217,8 @@ public class SensorsReader {
 			oximeter[1] = -1;
 			e.printStackTrace();
 		}
-		
+
 		return oximeter;
 	}
-	
+
 }

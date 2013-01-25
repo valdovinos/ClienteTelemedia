@@ -26,7 +26,20 @@ import javax.swing.SwingConstants;
 
 import com.wissen.telemedia.gui.ParagraphLabel;
 import com.wissen.telemedia.gui.UIViewListener;
-
+/**@brief gestiona la llamadas a los pasos de toma de mediciones
+ * @param startButton
+ * @param continueButton
+ * @param centerContainer panel contenedor en el centro de la vista 
+ * @param center panel con la opción de poner una imagen con fondo 
+ * @param progressBar 
+ * @param progressIndicator
+ * @param nextStepTitle titulo en la pantalla
+ * @param stepIndicator
+ * @param instructions
+ * @param next 
+ * @param state
+ * @param color color blanco  
+ * @param imageSet contenedor de las imagenes centrales*/
 public abstract class RetrievalStepScreen extends UIView {
 	protected JButton startButton, continueButton;
 	protected JPanel centerContainer;
@@ -43,6 +56,7 @@ public abstract class RetrievalStepScreen extends UIView {
 	Color color = new Color(255, 255, 255);
 	protected JPanel imageSet;
 	ImageIcon icon = new ImageIcon("assets/banner.png");	
+	/**cantenedor de la imagenes centrales */
 	static class ImageSet extends JPanel {
 		public ImageSet(String correct, String incorrect) {
 			super(new GridBagLayout());
@@ -56,13 +70,15 @@ public abstract class RetrievalStepScreen extends UIView {
 			add(labelFromImage("assets/incorrect_sign.png"), c);
 			c.gridx++;
 			add(labelFromImage(incorrect), c);
-			//cambia el color del panel contenedor de las imagenes
+			///cambia el color del panel contenedor de las imagenes
 			Color color = new Color(255, 255, 255);
 			this.setBackground(color);
 			
 						
 		}
-		
+		/**@brief label con la opción de colocar una imagen en el
+		 * @param path ruta a la imagen
+		 * @return JLabel con la imagen contenida en el */
 		public JLabel labelFromImage(String path) {
 			BufferedImage i = null;
 			try {
@@ -74,7 +90,7 @@ public abstract class RetrievalStepScreen extends UIView {
 		}
 	}
 
-
+	/**@brief intancia el objeto UIViewListener en la super clase*/
 	public RetrievalStepScreen(UIViewListener listener) {
 		super(listener);
 	}

@@ -1,5 +1,6 @@
 /**
- * @author Hugo Valdovinos Hernández*/
+ * @author Hugo Valdovinos Hernández
+ */
 package imagene.panel;
 
 import java.awt.BorderLayout;
@@ -12,29 +13,42 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
- * @brief Teclado virtual extiende de JPanel regresando tal  y conteniendo el teclado virtual 
- * @param JTexField t objeto al cual hace referencia el teclado
- * @param JTextfield txt auxiliar para igualar al objeto JtextField recibido en el constructor 
- * @param boolean auxmayus variable de control para la tecla mayus*/
+ * @brief Teclado virtual extiende de JPanel regresando tal y conteniendo el
+ *        teclado virtual
+ * @param JTextfield
+ *            txt auxiliar para igualar al objeto JtextField recibido en el
+ *            constructor
+ * @param boolean auxmayus variable de control para la tecla mayus
+ * @param teclas
+ *            [] array que contiene los caracteres del teclado
+ * @param botones
+ *            ArrayList para los botones del teclado
+ */
 @SuppressWarnings("serial")
 public class JKeyboardPane extends JPanel {
 
 	JTextField txt;
 	boolean auxmayus;
-	
-	/*opcional
-	 * String teclasMayus[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9",
-	 * "0", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D",
-	 * "F", "G", "H", "J", "K", "L", "Ñ", "Z", "X", "C", "V", "B", "N", "M", "."
-	 * };
+
+	/*
+	 * opcional String teclasMayus[] = { "1", "2", "3", "4", "5", "6", "7", "8",
+	 * "9", "0", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S",
+	 * "D", "F", "G", "H", "J", "K", "L", "Ñ", "Z", "X", "C", "V", "B", "N",
+	 * "M", "." };
 	 */
-	
+
 	String teclas[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "q",
 			"w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f",
 			"g", "h", "k", "l", "ñ", "z", "x", "c", "v", "b", "n", "m", "." };
 	ArrayList<JButton> botones = new ArrayList<JButton>();
 	JPanel pletras, specialKeys;
 
+	/**
+	 * @brief contructor en el cual se realiza todas la instrucciones al crearse
+	 * @param JTexField
+	 *            t objeto al cual hace referencia el teclado
+	 * @return panel con el teclado asociado al JTextField recivido
+	 */
 	public JKeyboardPane(JTextField t) {
 		txt = t;
 		pletras = new JPanel();
@@ -147,13 +161,12 @@ public class JKeyboardPane extends JPanel {
 		specialKeys.add(b);
 		add(specialKeys, BorderLayout.NORTH);
 		add(pletras);
+		/** @brief tecla espacio se deja desabilitada */
 		/*
 		 * JButton bespacio = new JButton(" ");
 		 * bespacio.addActionListener(accion); specialKeys.add(new JLabel());
 		 * specialKeys.add(bespacio); specialKeys.add(new JLabel());
 		 */
-		// add(specialKeys, BorderLayout.SOUTH);// tecla espacio se deja
-		// desabilitada
-
+		// add(specialKeys, BorderLayout.SOUTH);
 	}
 }
