@@ -4,6 +4,7 @@ import com.wissen.telemedia.gui.UIViewListener;
 import com.wissen.telemedia.tsaak.SensorsReader;
 /**
  * @brief valores para el paso temperatura*/
+@SuppressWarnings("serial")
 public class TemperatureRetrievalStepScreen extends RetrievalStepScreen {
 
 	public TemperatureRetrievalStepScreen(UIViewListener listener) {

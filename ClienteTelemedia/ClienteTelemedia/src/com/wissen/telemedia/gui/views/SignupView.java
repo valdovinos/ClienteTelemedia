@@ -22,6 +22,7 @@ import com.wissen.telemedia.dao.DAOUser;
 import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.UIViewListener;
 
+@SuppressWarnings("serial")
 public class SignupView extends UIView {
 	
 	public JLabel errors;

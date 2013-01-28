@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -49,9 +48,10 @@ import com.wissen.telemedia.gui.views.UIView;
  *            vista actual en el ciclo del programa
  * 
  */
+@SuppressWarnings("serial")
 public class MainWindow extends JFrame implements UIViewListener {
-	private static final int W = 800;
-	private static final int H = 520;
+//	private static final int W = 800;
+//	private static final int H = 520;
 
 	public static final int IDLE_WAIT = 20000;
 	public static final int REPORT_WAIT = 30000;
@@ -61,6 +61,7 @@ public class MainWindow extends JFrame implements UIViewListener {
 
 	private UIView currentView;
 
+	@SuppressWarnings("unused")
 	private boolean standby;
 
 	private RetrievalStepScreen[] stepScreens;

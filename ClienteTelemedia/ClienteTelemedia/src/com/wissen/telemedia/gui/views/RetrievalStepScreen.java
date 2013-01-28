@@ -6,10 +6,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -33,13 +31,15 @@ import com.wissen.telemedia.gui.UIViewListener;
  * @param center panel con la opción de poner una imagen con fondo 
  * @param progressBar 
  * @param progressIndicator
- * @param nextStepTitle titulo en la pantalla
+ * @param nextStepTitle título en la pantalla
  * @param stepIndicator
  * @param instructions
  * @param next 
- * @param state
+ * @param state control de estado de la medición 
  * @param color color blanco  
- * @param imageSet contenedor de las imagenes centrales*/
+ * @param imageSet contenedor de las imagenes centrales
+ * @see ParagraphLabel*/
+@SuppressWarnings("serial")
 public abstract class RetrievalStepScreen extends UIView {
 	protected JButton startButton, continueButton;
 	protected JPanel centerContainer;
@@ -94,25 +94,29 @@ public abstract class RetrievalStepScreen extends UIView {
 	public RetrievalStepScreen(UIViewListener listener) {
 		super(listener);
 	}
-
+	/**@brief instancia los objetos a utiliazar y los agrega a la clase
+	 * @param font objeto fuente BOLD para el texto
+	 * @param progressIndicator indicador del progreso label con metodos sobrecargados  
+	 * @param instructions instrucciones al usuario deacuerdo al paso donde se encuentra
+	 * @param newLabelFont fuente personalizado en los textos*/
 	protected void init() {
 		Font font= new Font("newFon", Font.BOLD,
 				(int) (12));
 		progressIndicator = new ParagraphLabel();
 		stepIndicator = new ParagraphLabel("Paso X de Y");
-		
+		/**agrega el titulo al panel principal*/
 		addHeading(getTitle());
 
 		Font newLabelFont = stepIndicator.getFont().deriveFont(
 				heading.getFont().getSize() * 0.75f);
 		stepIndicator.setFont(newLabelFont);
-	
+		/**agrega instruciones al usuario*/
 		instructions = new ParagraphLabel(getInstructionText(),
 				SwingConstants.CENTER);
 		
 		
 		startButton = new JButton("Iniciar medición");
-		//panel con imagen de fondo para las mediciones
+		/**panel con imagen de fondo */
 		center = new JPanelConFondo();
 		center.setPreferredSize(new Dimension(800, 400));
 		center.setBackground(color);
@@ -123,7 +127,7 @@ public abstract class RetrievalStepScreen extends UIView {
 		//contenedor central de imagenes de medicion
 		centerContainer.setPreferredSize(new Dimension(700, 360));		
 		centerContainer.setBackground(color);
-	
+		/**agrega las imagenes centrales*/
 		try {
 			imageSet = new ImageSet(getCorrectInstructiveImage(), getIncorrectInstructiveImage());
 			centerContainer.add(imageSet);
@@ -170,7 +174,6 @@ public abstract class RetrievalStepScreen extends UIView {
 		c.gridy++;
 		next = new ParagraphLabel();
 		next.setPreferredSize(new Dimension(380, 20));
-		//Color color = new Color;
 		next.setFont(font);
 		add(next, c);
 
@@ -185,24 +188,22 @@ public abstract class RetrievalStepScreen extends UIView {
 		});
 	}
 
+	/**@brief cambia las instruciones en el JLabel stepIndicator*/
 	public void setStepIndex(int index, int total) {
-		//agrega la imagen del banner y cambia las fuentes
+		/**agrega la imagen del banner y cambia las fuentes*/
 		stepIndicator.setIcon(icon);
 		stepIndicator.setVerticalTextPosition(JLabel.CENTER);
 		stepIndicator.setHorizontalTextPosition(JLabel.CENTER);
 		/**color del label instructions
-		 * cambiar paraponer un fonde blanco detras de las letras 
-		 */
-		 
-		//instructions.setIcon(icon);
+		 *fondo blanco 
+		 */		
 		stepIndicator.setForeground(color);
 		Font newLabelFont = new Font(heading.getFont().getName(), Font.BOLD,
 				(int) (heading.getFont().getSize() * 1.20));
-		stepIndicator.setFont(newLabelFont);
-		///////////////////////////////////
+		stepIndicator.setFont(newLabelFont);		
 		stepIndicator.setText(String.format("Paso %d de %d", index, total));
 	}
-
+	/**@brief agrega la barra de progreso al contenedor centerContainer */
 	private void addProgressBar() {
 		GridBagConstraints c = new GridBagConstraints();
 
@@ -228,15 +229,11 @@ public abstract class RetrievalStepScreen extends UIView {
 		c.gridx = 1;
 		c.gridy++;
 		progressIndicator.setPreferredSize(new Dimension(300, 60));
-		centerContainer.add(progressIndicator, c);
-		
-		
-		//centerContainer.validate();
-		
-		
+		centerContainer.add(progressIndicator, c);	
 		
 	}
-
+	/**@brief remueve los elementos startButton, imageSet, limpia los JLabels instructions, agrega la barra de progreso, repinta la interfaz y detiene el timer
+	 * @see startRetrieval()*/
 	private void initRetrieval() {
 		if(imageSet != null)
 			centerContainer.remove(imageSet);
@@ -246,19 +243,21 @@ public abstract class RetrievalStepScreen extends UIView {
 		startButton.setEnabled(false);
 		addProgressBar();
 		repaint();
+		/**detiene el idleTimer*/
 		listener.setStandby(true);
 		startRetrieval();
 		
 	}
-	
+	/**@brief asigna el siguiente titulo a mostrar*/
 	public void setNextStepTitle(String title) {
 		nextStepTitle = title;
 		
 	}
-
+	/**@brief actualiza la interfaz indicando al usuario que la medición esta terminada*/
 	protected final void finishedRetrieval() {
+		/**reinicia el timer*/
 		listener.setStandby(false);
-
+		
 		progressBar.setValue(progressBar.getMaximum());
 		progressBar.setIndeterminate(false);
 		
@@ -295,7 +294,7 @@ public abstract class RetrievalStepScreen extends UIView {
 	abstract public String getCorrectInstructiveImage();
 
 	abstract public String getIncorrectInstructiveImage();
-
+	/**@brief inico del thread encargado de gestionar la vista de medición*/
 	public void startRetrieval() {
 		new Thread() {
 			public void run() {
@@ -304,7 +303,7 @@ public abstract class RetrievalStepScreen extends UIView {
 			}
 		}.start();
 	}
-	
+	/**@brief lectura de los dispositivos*/
 	synchronized protected void doRetrieval() {
 		try {
 			Thread.sleep(1000);
@@ -312,7 +311,7 @@ public abstract class RetrievalStepScreen extends UIView {
 			e.printStackTrace();
 		}
 	}
-	
+	/**@brief actualiza la vista*/
 	public void nextState() {
 		if(state == 0) {
 			repaint();

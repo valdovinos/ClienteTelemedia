@@ -1,9 +1,12 @@
+/**@author Hugo Valdovinos*/
 package com.wissen.telemedia.dao;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URLConnection;
-
+/**@class DAOUser
+ * @brief consulta el usuario y contraseña en el servidor web
+*/
 public class DAOUser {
 
 	static final String ENCRYPTION_KEY = "TELEMEDIA";
@@ -31,7 +34,7 @@ public class DAOUser {
 		return result;
 	}
 	
-	
+	/**@brief agrega un nuevo usuario*/
 	// Birthdate in format 'YYYY/MM/DD'
 	public static String add(String name, String lastName1, String lastName2, String birthdate, String gender, String username, String password) {
 		String result;
