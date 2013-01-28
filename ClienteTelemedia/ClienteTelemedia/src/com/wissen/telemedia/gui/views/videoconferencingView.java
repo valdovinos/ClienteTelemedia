@@ -1,7 +1,7 @@
 /**
- * @author Hugo Valdovinos Hernandez
+ * @author Hugo Valdovinos Hernández <hugo.emec@gmail.com>
  * 
- * * vista para la videoconferencia heredando de UiView*/
+ */
 package com.wissen.telemedia.gui.views;
 
 import java.awt.Color;
@@ -16,11 +16,13 @@ import javax.swing.JPanel;
 import imagene.panel.JPanelConFondo;
 import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.UIViewListener;
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 
-/**
+/**@brief vista para la videoconferencia
  * @param container panel donde estara contenido los elementos de la vista
  * @param imageDoctor panel con la imagen de fondo del doctor
  * @param color objeto color rgb blanco*/
+@SuppressWarnings("serial")
 public class videoconferencingView extends UIView {
 	protected JPanel container;
 	protected JPanelConFondo imageDoctor;
@@ -31,10 +33,11 @@ public class videoconferencingView extends UIView {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
+	/**@brief agrega los abjetos a la vista principal y detiene el timer general de inactividad
 	 * @param done JButton para cerrar la vista
 	 * @param heading JPanel contiene la imagen de fondo del titulo
-	 * @param title JLabel texto en el titilo de la vista 	 
+	 * @param title JLabel texto en el titilo de la vista 	
+	 * @see((MainWindow) listener).setStandby(); 
 	 */
 	@Override
 	protected void init() {

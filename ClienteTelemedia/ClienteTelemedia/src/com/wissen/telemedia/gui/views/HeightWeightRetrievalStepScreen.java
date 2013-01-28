@@ -1,8 +1,10 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import com.wissen.telemedia.gui.UIViewListener;
 import com.wissen.telemedia.tsaak.SensorsReader;
 /**@brief valores para la medición de peso y altura*/
+@SuppressWarnings("serial")
 public class HeightWeightRetrievalStepScreen extends RetrievalStepScreen {
 
 	public HeightWeightRetrievalStepScreen(UIViewListener listener) {

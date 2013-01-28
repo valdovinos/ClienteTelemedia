@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import imagene.panel.JPanelConFondo;
@@ -7,7 +8,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,8 +19,12 @@ import javax.swing.JPanel;
 import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.ParagraphLabel;
 import com.wissen.telemedia.gui.UIViewListener;
-import com.wissen.telemedia.gui.views.RetrievalStepScreen.ImageSet;
 
+/**@brief bienvenida al usuario
+ *se despliega un menu preguntando la siguiente actividad a realizar 
+ *@param icon imagen del banner superior en la vista
+ *@param panel contenedor de los objetos*/
+@SuppressWarnings("serial")
 public class WelcomeScreen extends UIView {
 	JPanel panel = new JPanel();
 	
@@ -29,7 +33,8 @@ public class WelcomeScreen extends UIView {
 		super(listener);
 		
 	}
-
+	/**@brief inicia los objetos en la vista y asigna los listener a los botones 
+	 *@param heading contedor con imagen de fondo*/
 	@Override
 	protected void init() {
 	
@@ -68,8 +73,7 @@ public class WelcomeScreen extends UIView {
 		JButton continueB = new JButton("Continuar");
 		JButton cancelB = new JButton("Cancelar");
 		
-		/**codigo agregado para ir a la vista de video conferencia*/
-		
+		/*codigo agregado para ir a la vista de video conferencia*/		
 		JButton conferencia = new JButton("Videoconferencia");
 		conferencia.setPreferredSize(new Dimension(200, 40));
 		conferencia.addActionListener(new ActionListener() {
@@ -81,7 +85,6 @@ public class WelcomeScreen extends UIView {
 			}
 			
 		});		
-		/**************************************************************/
 		continueB.addActionListener(new ActionListener() {
 
 			@Override
@@ -144,8 +147,7 @@ public class WelcomeScreen extends UIView {
 
 		//add(continueB, c);
 	}
-/**
- * thread para cambiar la vista a la video conferencia*/
+/**@brief thread para cambiar la vista a la video conferencia*/
 	protected synchronized void goConferencia() {
 		
 		new Thread() {

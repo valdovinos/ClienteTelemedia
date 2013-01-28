@@ -1,11 +1,13 @@
 /**
- * @author Hugo Valdovinos
+ * @author Hugo Valdovinos Hernández <hugo.emec@gmail.com>
  * */
 package com.wissen.telemedia.dao;
 
 import java.net.URL;
 import java.net.URLConnection;
-/**@brief gestión de las conexiones al servidor web
+/**
+ * @class DAOConnection
+ * @brief gestión de las conexiones al servidor web
  * @param SERVLET_LOCATION direccion web del servidor
  */
 public class DAOConnection {

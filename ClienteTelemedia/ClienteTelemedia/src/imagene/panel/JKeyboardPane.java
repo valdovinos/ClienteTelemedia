@@ -1,5 +1,5 @@
 /**
- * @author Hugo Valdovinos Hernández
+ * @author Hugo Valdovinos Hernández <hugo.emec@gmail.com>
  */
 package imagene.panel;
 
@@ -16,13 +16,13 @@ import javax.swing.*;
  * @brief Teclado virtual extiende de JPanel regresando tal y conteniendo el
  *        teclado virtual
  * @param JTextfield
- *            txt auxiliar para igualar al objeto JtextField recibido en el
+ *             auxiliar para igualar al objeto JtextField recibido en el
  *            constructor
  * @param boolean auxmayus variable de control para la tecla mayus
  * @param teclas
- *            [] array que contiene los caracteres del teclado
+ *             contiene los caracteres del teclado
  * @param botones
- *            ArrayList para los botones del teclado
+ *             para los botones del teclado
  */
 @SuppressWarnings("serial")
 public class JKeyboardPane extends JPanel {
@@ -54,9 +54,8 @@ public class JKeyboardPane extends JPanel {
 		pletras = new JPanel();
 		setLayout(new BorderLayout());
 		pletras.setLayout(new GridLayout(4, 10, 0, 0));
-		/**
-		 * @brief listener que ingresa la acción a realizar en el botón
-		 * */
+		/*listener que ingresa la acción a realizar en el botón
+		 */
 		ActionListener accion = new ActionListener() {
 
 			@Override
@@ -64,8 +63,8 @@ public class JKeyboardPane extends JPanel {
 				JButton b = (JButton) e.getSource();
 				if (!b.getText().equalsIgnoreCase(" ")) {
 					/**
-					 * @brief condición para cambiar entre mayusculas y
-					 *        minisculas
+					 condición para cambiar entre mayusculas y
+					 minisculas
 					 */
 					if (auxmayus) {
 
@@ -81,8 +80,8 @@ public class JKeyboardPane extends JPanel {
 			}
 		};
 
-		/**
-		 * @brief asigna la letra crea los botones y asigna el listener
+		/*
+		asigna la letra crea los botones y asigna el listener
 		 * */
 		for (int i = 0; i < 37; i++) {
 			if (teclas[i].equalsIgnoreCase("x")) {
@@ -96,9 +95,9 @@ public class JKeyboardPane extends JPanel {
 			pletras.add(b);
 			botones.add(b);
 		}
-		/**
-		 * @brief listener exclusivo para la tecla retroceso
-		 * */
+		/*
+		 listener exclusivo para la tecla retroceso
+		 */
 		ActionListener back = new ActionListener() {
 
 			@Override
@@ -111,7 +110,7 @@ public class JKeyboardPane extends JPanel {
 			}
 
 		};
-		/** @brief botón para el retroceso */
+		/* botón para el retroceso */
 
 		JButton b = new JButton("Borrar");
 		b.setPreferredSize(new Dimension(80, 70));
@@ -119,8 +118,8 @@ public class JKeyboardPane extends JPanel {
 		// pletras.add(b);
 		// botones.add(b);
 
-		/**
-		 * @brief listener exclusivo para la tecla Mayus
+		/*
+		listener exclusivo para la tecla Mayus
 		 * */
 		ActionListener bloqMayus = new ActionListener() {
 
@@ -146,13 +145,13 @@ public class JKeyboardPane extends JPanel {
 			}
 
 		};
-		/** @brief botón para el Mayus */
+		/* botón para el Mayus */
 		JButton r = new JButton("Mayús");
 		r.setPreferredSize(new Dimension(80, 70));
-		/** agregar el listener al boton */
+		/* agregar el listener al boton */
 		r.addActionListener(bloqMayus);
 
-		/** @brief botón para el espacio */
+		/*botón para el espacio */
 		specialKeys = new JPanel(new GridLayout(1, 3));
 
 		JLabel l = new JLabel();
@@ -161,7 +160,7 @@ public class JKeyboardPane extends JPanel {
 		specialKeys.add(b);
 		add(specialKeys, BorderLayout.NORTH);
 		add(pletras);
-		/** @brief tecla espacio se deja desabilitada */
+		/*tecla espacio se deja desabilitada */
 		/*
 		 * JButton bespacio = new JButton(" ");
 		 * bespacio.addActionListener(accion); specialKeys.add(new JLabel());

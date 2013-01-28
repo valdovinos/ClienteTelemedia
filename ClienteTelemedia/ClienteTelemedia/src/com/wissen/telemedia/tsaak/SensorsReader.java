@@ -1,5 +1,5 @@
 /**
- * @author Hugo Valdovinos
+ * @author Hugo Valdovinos Hernández <hugo.emec@gmail.com>
  */
 package com.wissen.telemedia.tsaak;
 
@@ -28,7 +28,8 @@ public class SensorsReader {
 	 * @note trama obtenida del buffer donde esta almacenado el valor BEGIN:SAAL
 	 *       "primera linea" RESULT1:0000 "segunda linea" en hectogramos
 	 * @return peso en hectogramos
-	 */
+	 * @retval objeto con la expción del error */
+	 
 	public static double readWeight() {
 		double weight = -1;
 		try {
@@ -37,9 +38,9 @@ public class SensorsReader {
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
 			String line = br.readLine();
-			/** < valor devuelto BEGIN:SAAL */
+			/* < valor devuelto BEGIN:SAAL */
 			line = br.readLine();
-			/** < valor devuelto RESULT1:0000 */
+			/* < valor devuelto RESULT1:0000 */
 
 			if (!line.equals("END:ERROR"))
 
@@ -69,6 +70,7 @@ public class SensorsReader {
 	 *       "primera linea" RESULT1:0000 "segunda linea" en sistlica
 	 *       RESULT2:0000 "tercera linea" en diastlica
 	 * @return arreglo con los dos valores de la medición
+	 * @retval objeto con la expción del error
 	 */
 	public static double[] readPressure() {
 		double[] pressure = { -1, -1 };
@@ -78,14 +80,14 @@ public class SensorsReader {
 			InputStreamReader ir = new InputStreamReader(p.getInputStream());
 			BufferedReader br = new BufferedReader(ir);
 			String line = br.readLine();
-			/** < valor devuelto BEGIN:KIL */
+			/* < valor devuelto BEGIN:KIL */
 			line = br.readLine();
-			/** < valor devuelto RESULT1:0000 */
+			/* < valor devuelto RESULT1:0000 */
 
 			if (!line.equals("END:ERROR")) {
 				pressure[0] = Double.parseDouble(line.split(":")[1].trim()) / 10.0;
 				line = br.readLine();
-				/** < RESULT2:0000 */
+				/* < RESULT2:0000 */
 				pressure[1] = Double.parseDouble(line.split(":")[1].trim()) / 10.0;
 			}
 
@@ -114,6 +116,7 @@ public class SensorsReader {
 	 * @note trama obtenida del buffer donde esta almacenado el valor BEGIN:NAAB
 	 *       "primera linea" RESULT1:0000 "segunda linea" en centimetros
 	 * @return estatura en metros
+	 * @retval objeto con la expción del error
 	 */
 	public static double readHeight() {
 		double height = -1;

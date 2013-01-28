@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import java.awt.Color;
@@ -13,7 +14,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.wissen.telemedia.gui.UIViewListener;
-
+/**@brief vista general de donde heredan todas las vistas
+ * @param c contenedor de objetos en la vista
+ * @param listener objeto UIViewListener heredado en las subclases "Polimorfismo"
+ * @param imagen  contenedor de imagen
+ * @param heading texto en la cabezera de la vista
+ * @note se definen los elementos generales a utilizar en todas las vistas sobrecargando las funciones de JPanel*/
+@SuppressWarnings("serial")
 abstract public class UIView extends JPanel {
 	protected UIViewListener listener;
 
@@ -42,8 +49,7 @@ abstract public class UIView extends JPanel {
 		init();
 	}
 
-	/**
-	 * funcion de prueba para imagen de fondo
+	/**@brief asigna la imagen a partir de la ruta recibida
 	 * */
 	public void setImagen(String nombreImagen) {
 		if (nombreImagen != null) {
@@ -54,13 +60,14 @@ abstract public class UIView extends JPanel {
 
 		repaint();
 	}
-
+	/**@brief asigna una nueva imagen en base a la ruta recibida*/
 	public void setImagen(Image nuevaImagen) {
 		imagen = nuevaImagen;
 
 		repaint();
 	}
 
+	/**@brief coloca la imagen contenida en image al panel*/
 	@Override
 	public void paint(Graphics g) {
 		if (imagen != null) {
@@ -74,7 +81,12 @@ abstract public class UIView extends JPanel {
 		super.paint(g);
 	}
 
-	// //////////////////////////////////////////////////////////
+	/**@brief asigna el texto en el título de la ventana principal con respecto al texto recibido
+	 * @note para la vista reporte se asigna un estilo de texto diferente al de las de mas vista
+	 * @param icon imagen de fondo en el JLabel
+	 * @param color blanco en rgb
+	 * @param title JLabel para el título
+	 */
 	protected void addHeading(String text) {
 		
 		if (text == "Reporte") {

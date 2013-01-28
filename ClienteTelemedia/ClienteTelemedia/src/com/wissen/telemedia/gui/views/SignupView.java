@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import java.awt.Color;
@@ -21,7 +22,8 @@ import javax.swing.JRadioButton;
 import com.wissen.telemedia.dao.DAOUser;
 import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.UIViewListener;
-
+/**@brief vista de registro de un nuevo usuario
+ * @note esta vista no es implementa actualmente*/
 @SuppressWarnings("serial")
 public class SignupView extends UIView {
 	

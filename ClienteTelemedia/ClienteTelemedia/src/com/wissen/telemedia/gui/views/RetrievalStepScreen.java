@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import imagene.panel.JPanelConFondo;
@@ -56,7 +57,7 @@ public abstract class RetrievalStepScreen extends UIView {
 	Color color = new Color(255, 255, 255);
 	protected JPanel imageSet;
 	ImageIcon icon = new ImageIcon("assets/banner.png");	
-	/**cantenedor de la imagenes centrales */
+	/*cantenedor de la imagenes centrales */
 	static class ImageSet extends JPanel {
 		public ImageSet(String correct, String incorrect) {
 			super(new GridBagLayout());
@@ -104,19 +105,19 @@ public abstract class RetrievalStepScreen extends UIView {
 				(int) (12));
 		progressIndicator = new ParagraphLabel();
 		stepIndicator = new ParagraphLabel("Paso X de Y");
-		/**agrega el titulo al panel principal*/
+		/*agrega el titulo al panel principal*/
 		addHeading(getTitle());
 
 		Font newLabelFont = stepIndicator.getFont().deriveFont(
 				heading.getFont().getSize() * 0.75f);
 		stepIndicator.setFont(newLabelFont);
-		/**agrega instruciones al usuario*/
+		/*agrega instruciones al usuario*/
 		instructions = new ParagraphLabel(getInstructionText(),
 				SwingConstants.CENTER);
 		
 		
 		startButton = new JButton("Iniciar medición");
-		/**panel con imagen de fondo */
+		/*panel con imagen de fondo */
 		center = new JPanelConFondo();
 		center.setPreferredSize(new Dimension(800, 400));
 		center.setBackground(color);
@@ -190,11 +191,11 @@ public abstract class RetrievalStepScreen extends UIView {
 
 	/**@brief cambia las instruciones en el JLabel stepIndicator*/
 	public void setStepIndex(int index, int total) {
-		/**agrega la imagen del banner y cambia las fuentes*/
+		/*agrega la imagen del banner y cambia las fuentes*/
 		stepIndicator.setIcon(icon);
 		stepIndicator.setVerticalTextPosition(JLabel.CENTER);
 		stepIndicator.setHorizontalTextPosition(JLabel.CENTER);
-		/**color del label instructions
+		/*color del label instructions
 		 *fondo blanco 
 		 */		
 		stepIndicator.setForeground(color);

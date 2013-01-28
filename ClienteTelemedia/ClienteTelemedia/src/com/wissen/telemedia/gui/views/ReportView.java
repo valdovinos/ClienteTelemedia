@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import java.awt.Color;
@@ -7,24 +8,27 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
 import com.wissen.telemedia.gui.UIViewListener;
-
+/**@brief vista de presentación de los resultados de todo el proceso
+ * @param blanco color en rgb*/
+@SuppressWarnings("serial")
 public class ReportView extends UIView {
 	static Color blanco = new Color(255, 255, 255);
+	/**@brief tabla de presentación de resultados*/
 	static class Row extends JPanel {
 		public Row(String key, Double val) {
 			this(key, Double.toString(val));
 			
 		}
-
+		/**@brief crea una fila de la tabla
+		 * @param key nombre del valor
+		 * @param val valor de la medición*/
 		public Row(String key, String val) {
 			
 			setBorder(new MatteBorder(0, 1, 1, 1, new Color(185, 190, 16)));
@@ -52,6 +56,9 @@ public class ReportView extends UIView {
 		super(listener);		
 	}
 
+	/**@brief genera la vista de reporte dando formato y generando los objetos para ello, envía el resultado al servidor web
+	 * @note al presionar el bóton done cierra la sesión 
+	 * @see Row,listener.getSession().getMetric() */
 	@Override
 	protected void init() {
 		
@@ -78,10 +85,7 @@ public class ReportView extends UIView {
 		add(row, c);
 
 		c.gridy++;		
-	//cambiar el fondo 
-		
-		//row.setFont(font);
-	//
+	
 		add(new Row("Apellido Paterno", listener.getSession().lastname1), c);
 		
 		c.gridy++;

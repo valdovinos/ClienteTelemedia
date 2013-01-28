@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import com.wissen.telemedia.gui.UIViewListener;
@@ -33,7 +34,7 @@ public class TemperatureRetrievalStepScreen extends RetrievalStepScreen {
 	/**@brief obtiene la temperatura y la almacena*/
 	synchronized protected void doRetrieval() {
 		double temperature = SensorsReader.readTemperature();
-		/**guarda el valor obtenido en el ArrayList de la clase Session*/ 
+		/*guarda el valor obtenido en el ArrayList de la clase Session*/ 
 		listener.getSession().addMetric("temperature", temperature);
 	}
 

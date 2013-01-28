@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import java.awt.Color;
@@ -9,20 +10,23 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import imagene.panel.JKeyboardPane;
-
-
 import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.UIViewListener;
-
+/**@brief vista inicial al usuario
+ * @param username nombre de usuario
+ * @param password contraseña de usuario
+ * @param loginButton bóton con la acción de acceder
+ * @param errors mensaje de alerta al usuario 
+ * @param teclado teclado virtual 
+ * @param pop contenedor del teclado virtual*/
+@SuppressWarnings("serial")
 public class LoginView extends UIView {
 
 	public LoginView(UIViewListener listener) {
@@ -35,6 +39,8 @@ public class LoginView extends UIView {
 	JLabel errors;
 	JKeyboardPane teclado;
 	JPopupMenu pop;
+	/**@brief inicia los objetos en la vista
+	 * @note genera el aspecto de la vista e inicializa los listener contenidos en los botones*/
 	@Override
 	protected void init() {
 		addHeading("Entrar");
@@ -173,12 +179,15 @@ public class LoginView extends UIView {
 		});
 		c.gridy++;
 	}
-	
+	/**@brief envia el usuario y contraseña introducido y espera el acceso
+	 * @note si el usuario y contraseña son correctos cambia la vista, de ser incorrectos envia un mensaje de error al usuario
+	 * @see listener.getSession(),((MainWindow) listener).changeViewTo()*/
 	protected synchronized void tryLogin() {
 		loginButton.setEnabled(false);
 		new Thread() {
 			public void run() {
 				if(listener.getSession().attemptLogin(username.getText(), password.getText())) {
+					/*remueve el teclado*/
 					pop.removeAll();
 					((MainWindow) listener).changeViewTo(new WelcomeScreen(listener));
 				} else {

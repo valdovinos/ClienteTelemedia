@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.test;
 
 import java.awt.Color;
@@ -21,7 +22,8 @@ import javax.swing.UIManager;
 import com.wissen.telemedia.dao.DAOParameters;
 import com.wissen.telemedia.dao.DAOUser;
 import java.awt.SystemColor;
-
+/**@brief */
+@SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 	private JPasswordField txtPassword;
 	private JButton btnLogin;
@@ -268,6 +270,6 @@ public class MainWindow extends JFrame {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		new MainWindow();
+		//new MainWindow();
 	}
 }

@@ -1,3 +1,4 @@
+/**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
 import java.awt.Component;
@@ -5,17 +6,19 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
-
 import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.ParagraphLabel;
 import com.wissen.telemedia.gui.UIViewListener;
-
+/**@brief vista de alerta al usuario por inactividad
+ * @param timer proceso para restar 1 a secs_remaining coda segundo
+ * @param secs_remaining  tiempo en segundos para cerrar la sesión
+ * @param text texto al usuario
+ * @see MainWindow*/
+@SuppressWarnings("serial")
 public class IdleScreen extends UIView {
 	public IdleScreen(UIViewListener listener) {
 		super(listener);
@@ -26,7 +29,8 @@ public class IdleScreen extends UIView {
 	private int secs_remaining;
 
 	protected JLabel text;
-
+	/**@brief inicia los objetos en la vista y los timer
+	 * @see getText()*/
 	protected void init() {
 		secs_remaining = MainWindow.IDLE_WAIT / 1000;
 
@@ -110,7 +114,8 @@ public class IdleScreen extends UIView {
 
 		add(continueB, c);
 	}
-
+	/**@brief genera texto de advertencia al usuario
+	 * @return cadena con texto al usuario */
 	private String getText() {
 		return "Si no selecciona \"Continuar\", la medición "
 				+ "se cancelará en " + secs_remaining + " segundos.";

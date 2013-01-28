@@ -1,5 +1,5 @@
-/**
- * @author Hugo Valdovinos
+/**@file clase main del programa 
+*@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>
  */
 package com.wissen.telemedia.gui;
 
@@ -72,7 +72,7 @@ public class MainWindow extends JFrame implements UIViewListener {
 	private Session session;
 
 	/**
-	 * @brief constructur de la clase instancia los objetos a usar en UIManager,
+	 * @brief constructor de la clase instancia los objetos a usar en UIManager,
 	 *        configura el timer del programa e inicia el objeto sesión
 	 * @see configureTimer(), reset()
 	 * @param tk
@@ -86,7 +86,7 @@ public class MainWindow extends JFrame implements UIViewListener {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		setUndecorated(true);
-		/**asigna el tamaño inicial*/
+		/*asigna el tamaño inicial*/
 		setSize(800, 600);
 
 		Font oldLabelFont = UIManager.getFont("Label.font");
@@ -99,9 +99,9 @@ public class MainWindow extends JFrame implements UIViewListener {
 		UIManager.put("PasswordField.font", oldButtonFont.deriveFont(16f));
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		/**redimenciona la pantalla*/
+		/*redimenciona la pantalla*/
 		setBounds(0, 0, tk.getScreenSize().width, tk.getScreenSize().height);
-		/**asigna el tamaño final*/
+		/*asigna el tamaño final*/
 		setSize(tk.getScreenSize());
 		setResizable(false);
 
@@ -130,8 +130,8 @@ public class MainWindow extends JFrame implements UIViewListener {
 
 	/**
 	 * @brief gestión de pantalla en la vista RetrievalStepScreen asigna la
-	 *        pantalla con respecto al index recibido, finalizado asigna la
-	 *        siguiente vista
+	 *        pantalla con respecto al index recibido, finalizado asigna la siguiente vista
+	 * @code changeViewTo(new ReportView(this));
 	 * @param index
 	 *            del paso dentro de stepScreen
 	 * @see changeViewTo(), setStandby()
@@ -139,14 +139,14 @@ public class MainWindow extends JFrame implements UIViewListener {
 	public void changeScreen(int index) {
 		if (index >= stepScreens.length) {
 			setStandby(true);
-			/** reinicia el timer */
+			/*reinicia el timer */
 			reportTimer.restart();
 			changeViewTo(new ReportView(this));
 		} else {
 			currentScreenIndex = index;
 			currentScreen = stepScreens[index];
 			if (currentScreen instanceof RetrievalStepScreen) {
-				/**reinicia el timer*/
+				/*reinicia el timer*/
 				setStandby(false);
 
 				if (index < stepScreens.length - 1) {
@@ -169,12 +169,12 @@ public class MainWindow extends JFrame implements UIViewListener {
 		idleState = 0;
 		/** reinicia el timer */
 		idleTimer.restart();
-		/** existe currentScreen y session */
+		/*existe currentScreen y session */
 		if (currentScreen == null && getSession().id != -1) {
 			nextScreen();
 			/** siguiente pantalla */
 		} else {
-			/** si no existe asigna currentScreen */
+			/*si no existe asigna currentScreen */
 			changeViewTo(currentScreen);
 			/** avanza currentScreen al siguiente estado */
 			currentScreen.nextState();
@@ -251,9 +251,9 @@ public class MainWindow extends JFrame implements UIViewListener {
 			}
 
 		});
-		/**solo permite al timer enviar un evento en su listener*/
+		/*solo permite al timer enviar un evento en su listener*/
 		reportTimer.setRepeats(false);
-		/**detiene el timer*/
+		/*detiene el timer*/
 		reportTimer.stop();
 	}
 
@@ -265,10 +265,10 @@ public class MainWindow extends JFrame implements UIViewListener {
 	public void setStandby(boolean standbyState) {
 		standby = standbyState;		
 		if (standbyState) {
-			/**detiene el timer*/
+			/*detiene el timer*/
 			idleState = 0;
 			idleTimer.stop();
-		} else/**reinicia el timer*/
+		} else/*reinicia el timer*/
 			idleTimer.restart();
 	}
 	/**@brief reinicia el timer*/
@@ -286,11 +286,11 @@ public class MainWindow extends JFrame implements UIViewListener {
 	 * @param newView parametro recibida*/
 	public void changeViewTo(UIView newView) {
 		if (currentView != null)
-			/**remueve la vista actual*/
+			/*remueve la vista actual*/
 			getContentPane().remove(currentView);
-		/**agrega la nueva vista al panel*/
+		/*agrega la nueva vista al panel*/
 		getContentPane().add(newView);
-		/**actualiza la variable indicadora de la vista actual*/
+		/*actualiza la variable indicadora de la vista actual*/
 		currentView = newView;
 		setVisible(true);
 	}
