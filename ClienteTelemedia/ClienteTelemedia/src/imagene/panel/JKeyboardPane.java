@@ -23,6 +23,7 @@ import javax.swing.*;
  *             contiene los caracteres del teclado
  * @param botones
  *             para los botones del teclado
+ * @note la tecla espacio queda desabilita
  */
 @SuppressWarnings("serial")
 public class JKeyboardPane extends JPanel {
