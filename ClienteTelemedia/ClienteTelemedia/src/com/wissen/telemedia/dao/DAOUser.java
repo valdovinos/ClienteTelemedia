@@ -11,7 +11,7 @@ public class DAOUser {
 	static final String ENCRYPTION_KEY = "TELEMEDIA";
 	/**@brief consulta el usuario y contraseña en el servidor web
 	 *@return cadena con la respuesta del servidor
-	 *@retval objeto con la exepción del error */
+	 *@retval e objeto con la exepción del error */
 	public static String login(String username, String password) {
 		String result;
 		try {
@@ -37,7 +37,7 @@ public class DAOUser {
 	
 	/**@brief agrega un nuevo usuario. Birthdate in format 'YYYY/MM/DD'
 	 *@return cadena con la respuesta del servidor
-	 *@retval objeto con la exepción del error */
+	 *@retval e objeto con la exepción del error */
 	public static String add(String name, String lastName1, String lastName2, String birthdate, String gender, String username, String password) {
 		String result;
 		try {

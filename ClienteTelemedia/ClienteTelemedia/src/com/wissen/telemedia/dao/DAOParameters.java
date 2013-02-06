@@ -26,7 +26,7 @@ public class DAOParameters {
 	 * @param in
 	 *            almacena la respuesta del servidor
 	 * @return cadena con la respuesta del servidor
-	 * @retval objeto con la expción del error
+	 * @retval e objeto con la expción del error
 	 * @see DAOConnection
 	 */
 	public static String saveParameters(int personId, double[] parameters) {

@@ -15,10 +15,9 @@ import javax.swing.*;
 /**
  * @brief Teclado virtual extiende de JPanel regresando tal y conteniendo el
  *        teclado virtual
- * @param JTextfield
- *             auxiliar para igualar al objeto JtextField recibido en el
+ * @param  auxiliar para igualar al objeto JtextField recibido en el
  *            constructor
- * @param boolean auxmayus variable de control para la tecla mayus
+ * @param txt auxmayus variable de control para la tecla mayus
  * @param teclas
  *             contiene los caracteres del teclado
  * @param botones
