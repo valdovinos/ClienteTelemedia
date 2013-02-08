@@ -1,6 +1,7 @@
 /**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
+import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.UIViewListener;
 import com.wissen.telemedia.tsaak.SensorsReader;
 /**
@@ -34,6 +35,22 @@ public class TemperatureRetrievalStepScreen extends RetrievalStepScreen {
 	/**@brief obtiene la temperatura y la almacena*/
 	synchronized protected void doRetrieval() {
 		double temperature = SensorsReader.readTemperature();
+		if (temperature == -1.0) {
+			try {
+				temperature = SensorsReader.readTemperature();
+				if (temperature == -1.0) {
+					((MainWindow) listener).changeViewTo(new ErrorSensorView(
+							listener, msg));
+					Thread.sleep(4000);
+					((MainWindow) listener)
+							.changeViewTo(((MainWindow) listener).currentScreen);
+					listener.endSession();
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		/*guarda el valor obtenido en el ArrayList de la clase Session*/ 
 		listener.getSession().addMetric("temperature", temperature);
 	}

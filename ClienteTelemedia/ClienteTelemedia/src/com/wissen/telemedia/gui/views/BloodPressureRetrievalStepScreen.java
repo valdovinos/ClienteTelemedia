@@ -1,6 +1,7 @@
 /**@author Hugo Valdovinos Hernández <hugo.emec@gmail.com>*/
 package com.wissen.telemedia.gui.views;
 
+import com.wissen.telemedia.gui.MainWindow;
 import com.wissen.telemedia.gui.UIViewListener;
 import com.wissen.telemedia.tsaak.SensorsReader;
 /**@brief valores para la medición de presión en la sangre*/
@@ -33,7 +34,22 @@ public class BloodPressureRetrievalStepScreen extends RetrievalStepScreen {
 	/**@brief obtiene y almacena los valores */
 	synchronized protected void doRetrieval() {
 		double[] data = SensorsReader.readPressure();
-		
+		if (data[0] == -1.0){
+				try {
+					data = SensorsReader.readPressure();
+					if (data[0] == -1.0) {						
+						((MainWindow) listener).changeViewTo(new ErrorSensorView(
+								listener, msg));
+						Thread.sleep(4000);
+						((MainWindow) listener)
+								.changeViewTo(((MainWindow) listener).currentScreen);
+						listener.endSession();
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		double systolicPressure  = data[0];
 		double diastolicPressure = data[1];
 		/*guarda el valor obtenido en el ArrayList de la clase Session*/ 

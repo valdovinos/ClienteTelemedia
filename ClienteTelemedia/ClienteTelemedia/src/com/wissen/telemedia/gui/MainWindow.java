@@ -57,7 +57,7 @@ public class MainWindow extends JFrame implements UIViewListener {
 	public static final int REPORT_WAIT = 30000;
 
 	private int currentScreenIndex = -1;
-	private UIView currentScreen, idleScreen;
+	public UIView currentScreen, idleScreen;
 
 	private UIView currentView;
 

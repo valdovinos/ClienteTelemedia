@@ -56,8 +56,8 @@ public class SensorsReader {
 	}
 
 	/**
-	 * @brief acceso al sensor para medir Presion sistlica, presion diastlica
-	 * @note Devuelve Presion sistlica, presion diastlica
+	 * @brief acceso al sensor para medir Presión sistlica, presion diastlica
+	 * @note Devuelve Presion sistlica, presión diastlica
 	 * @param p
 	 *            ejecuta un comando en consola
 	 * @param ir

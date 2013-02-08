@@ -39,6 +39,7 @@ import com.wissen.telemedia.gui.UIViewListener;
  * @param state control de estado de la medición 
  * @param color color blanco  
  * @param imageSet contenedor de las imagenes centrales
+ * @param msg cadena con el mesaje a utilizar en la vista ErrorSensorView
  * @see ParagraphLabel*/
 @SuppressWarnings("serial")
 public abstract class RetrievalStepScreen extends UIView {
@@ -53,7 +54,7 @@ public abstract class RetrievalStepScreen extends UIView {
 	protected JLabel stepIndicator, instructions, next;
 	
 	protected int state = 0;
-	
+	protected String msg = "Por el momento no podemos atenderle por favor intentelo mas tarde";
 	Color color = new Color(255, 255, 255);
 	protected JPanel imageSet;
 	ImageIcon icon = new ImageIcon("assets/banner.png");	
@@ -77,7 +78,7 @@ public abstract class RetrievalStepScreen extends UIView {
 			
 						
 		}
-		/**@brief label con la opción de colocar una imagen en el
+		/**@brief label con la opción de colocar una imagen de fondo
 		 * @param path ruta a la imagen
 		 * @return JLabel con la imagen contenida en el */
 		public JLabel labelFromImage(String path) {
@@ -268,9 +269,7 @@ public abstract class RetrievalStepScreen extends UIView {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				listener.nextScreen();
-
 			}
-
 		});
 		
 		c.gridy--;
