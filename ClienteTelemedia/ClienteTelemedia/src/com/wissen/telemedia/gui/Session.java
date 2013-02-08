@@ -62,7 +62,6 @@ public class Session {
 		String result = DAOUser.login(username, password);
 		//el servidor responde successful seguido de la trama con los datos del usuario
 		if(result.startsWith("successful")) {
-			System.out.println(result);
 			String[] resultArray = result.split(";");// formato de la trama successful;person_id;given_name;middle_name;lastName (lopez perez)
 			int personId = Integer.parseInt(resultArray[1]);
 			String firstName = resultArray[2];

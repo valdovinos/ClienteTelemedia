@@ -48,13 +48,13 @@ public class HeightWeightRetrievalStepScreen extends RetrievalStepScreen {
 				weight = SensorsReader.readWeight();
 				/*si el segundo intento  de lectura no es posible inicia la vista ErrorSensorView y cierra la sesión*/
 				if (weight == -1.0) {
-					String msg = "Por el momento no podemos atenderle por favor intentelo luego";
 					((MainWindow) listener).changeViewTo(new ErrorSensorView(
 							listener, msg));
 					Thread.sleep(7000);
 					((MainWindow) listener)
 							.changeViewTo(((MainWindow) listener).currentScreen);
 					listener.endSession();
+					return;
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block

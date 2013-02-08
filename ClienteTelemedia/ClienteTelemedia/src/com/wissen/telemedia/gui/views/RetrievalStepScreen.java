@@ -2,7 +2,6 @@
 package com.wissen.telemedia.gui.views;
 
 import imagene.panel.JPanelConFondo;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -14,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -54,7 +52,7 @@ public abstract class RetrievalStepScreen extends UIView {
 	protected JLabel stepIndicator, instructions, next;
 	
 	protected int state = 0;
-	protected String msg = "Por el momento no podemos atenderle por favor intentelo mas tarde";
+	protected String msg = "Por el momento no podemos atenderle, por favor intentelo mas tarde";
 	Color color = new Color(255, 255, 255);
 	protected JPanel imageSet;
 	ImageIcon icon = new ImageIcon("assets/banner.png");	
