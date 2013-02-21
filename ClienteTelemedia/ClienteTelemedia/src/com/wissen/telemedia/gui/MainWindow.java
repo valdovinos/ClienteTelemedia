@@ -10,6 +10,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -214,7 +215,7 @@ public class MainWindow extends JFrame implements UIViewListener {
 				.getLocalGraphicsEnvironment();
 		GraphicsDevice screen = graphicsEnvironment.getDefaultScreenDevice();
 		screen.setFullScreenWindow(frame);
-
+		
 	}
 
 	/**
